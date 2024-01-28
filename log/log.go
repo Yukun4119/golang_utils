@@ -6,6 +6,14 @@ func init() {
 	log.SetFlags(log.Lshortfile | log.LstdFlags)
 }
 
-func Log() {
-	log.Println("Hello World")
+func Println(v ...any) {
+	log.Println(v)
+}
+
+func Print(v ...any) {
+	log.Print(v)
+}
+
+func Printf(format string, v ...any) {
+	log.Printf(format, v)
 }
