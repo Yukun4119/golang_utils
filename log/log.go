@@ -1,11 +1,11 @@
 package log
 
-import "fmt"
+import "log"
 
 func init() {
-	fmt.Println("init")
+	log.SetFlags(log.Lshortfile | log.LstdFlags)
 }
 
-func Hello() {
-	fmt.Println("Hello, Shawn Log v5")
+func Log() {
+	log.Println("Hello World")
 }
