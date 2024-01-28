@@ -2,6 +2,10 @@ package log
 
 import "fmt"
 
-func main() {
+func init() {
+	fmt.Println("init")
+}
+
+func Hello() {
 	fmt.Println("Hello, Shawn")
 }
