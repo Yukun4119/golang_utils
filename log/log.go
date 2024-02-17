@@ -1,11 +1,12 @@
 package log
 
-import "log"
+import (
+	"log"
+)
 
 func init() {
 	//log.SetFlags(log.Lshortfile | log.LstdFlags | log.Lmicroseconds)
 	log.SetFlags(log.LstdFlags | log.Lmicroseconds)
-	// log.SetPrefix("golang_utils_")
 }
 
 func Println(v ...any) {

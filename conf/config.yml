@@ -1,0 +1,3 @@
+testConfig:
+  key: "foo"
+  value: "bar"
