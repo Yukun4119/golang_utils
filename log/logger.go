@@ -2,6 +2,8 @@ package log
 
 import (
 	"fmt"
+	"path/filepath"
+	"runtime"
 	"sync/atomic"
 	"time"
 )
@@ -40,6 +42,14 @@ func (l *Logger) assembleMsg(logLevel string, format string, v ...any) Message {
 	if l.showDetail {
 		msg += fmt.Sprintf("%s", time.Now()) + " "
 	}
+
+	_, file, line, ok := runtime.Caller(3)
+	if !ok {
+		file = "unknown file"
+		line = 0
+	}
+	msg += fmt.Sprintf("%s:%d", filepath.Base(file), line) + " "
+
 	msg += fmt.Sprintf(format, v...) + " "
 	msg += "\n"
 	return Message(msg)
