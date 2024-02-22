@@ -29,8 +29,9 @@ But messages sent to os.Stderr will always get printed immediately.
 */
 func NewLogger() *Logger {
 	return &Logger{
-		level: LevelInfo,
-		w:     os.Stderr,
+		level:      LevelInfo,
+		w:          os.Stderr,
+		showDetail: false,
 	}
 }
 
@@ -42,38 +43,14 @@ func GetLevel() Level {
 	return defaultLogger.GetLevel()
 }
 
-func Print(v ...any) {
-
+func Info(format string, v ...any) {
+	defaultLogger.Info(format, v...)
 }
 
-func Println() {
-
+func Debug(format string, v ...any) {
+	defaultLogger.Debug(format, v...)
 }
 
-func Printf() {
-
-}
-
-func Fatal() {
-
-}
-
-func Fatalln() {
-
-}
-
-func Fatalf() {
-
-}
-
-func Info() {
-
-}
-
-func Warn() {
-
-}
-
-func Error() {
-
+func Error(format string, v ...any) {
+	defaultLogger.Error(format, v...)
 }

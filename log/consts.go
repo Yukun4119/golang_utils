@@ -5,3 +5,9 @@ const (
 	LevelInfo
 	LevelError
 )
+
+const (
+	InfoLevel  = "[INFO]"
+	DebugLevel = "[DEBUG]"
+	ErrorLevel = "[ERROR]"
+)
