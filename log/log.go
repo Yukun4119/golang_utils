@@ -1,22 +1,9 @@
 package log
 
-import (
-	"log"
-)
+import "fmt"
 
-func init() {
-	//log.SetFlags(log.Lshortfile | log.LstdFlags | log.Lmicroseconds)
-	log.SetFlags(log.LstdFlags | log.Lmicroseconds)
-}
+func init() {}
 
 func Println(v ...any) {
-	log.Println(v...)
-}
-
-func Print(v ...any) {
-	log.Print(v...)
-}
-
-func Printf(format string, v ...any) {
-	log.Printf(format, v...)
+	fmt.Println("hello test")
 }
