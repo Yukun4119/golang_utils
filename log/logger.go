@@ -39,18 +39,22 @@ func (l *Logger) Error(format string, v ...any) {
 
 func (l *Logger) assembleMsg(logLevel string, format string, v ...any) Message {
 	msg := logLevel + " "
+
 	if l.showDetail {
 		msg += fmt.Sprintf("%s", time.Now()) + " "
 	}
 
-	_, file, line, ok := runtime.Caller(3)
+	msg += getFileLocation()
+	msg += fmt.Sprintf(format, v...) + " "
+	msg += "\n"
+	return Message(msg)
+}
+
+func getFileLocation() string {
+	_, file, line, ok := runtime.Caller(4)
 	if !ok {
 		file = "unknown file"
 		line = 0
 	}
-	msg += fmt.Sprintf("%s:%d", filepath.Base(file), line) + " "
-
-	msg += fmt.Sprintf(format, v...) + " "
-	msg += "\n"
-	return Message(msg)
+	return fmt.Sprintf("%s:%d", filepath.Base(file), line) + " "
 }
