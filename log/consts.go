@@ -23,3 +23,8 @@ const (
 	Gray   = "\033[37m"
 	White  = "\033[97m"
 )
+
+const (
+	Whitespace = " "
+	Newline    = "\n"
+)

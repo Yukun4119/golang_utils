@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"path/filepath"
 	"runtime"
+	"strings"
 	"sync/atomic"
 	"time"
 )
@@ -38,16 +39,21 @@ func (l *Logger) Error(format string, v ...any) {
 }
 
 func (l *Logger) assembleMsg(logLevel string, format string, v ...any) Message {
-	msg := logLevel + " "
+	var msg strings.Builder
+	msg.WriteString(logLevel)
+	msg.WriteString(Whitespace)
 
 	if l.showDetail {
-		msg += fmt.Sprintf("%s", time.Now()) + " "
+		msg.WriteString(fmt.Sprintf("%s", time.Now()))
+		msg.WriteString(Whitespace)
 	}
 
-	msg += getFileLocation()
-	msg += fmt.Sprintf(format, v...) + " "
-	msg += "\n"
-	return Message(msg)
+	msg.WriteString(getFileLocation())
+	msg.WriteString(fmt.Sprintf(format, v...))
+	msg.WriteString(Whitespace)
+	msg.WriteString(Newline)
+
+	return Message(msg.String())
 }
 
 func getFileLocation() string {
