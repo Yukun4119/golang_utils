@@ -35,22 +35,43 @@ func NewLogger() *Logger {
 	}
 }
 
+/*
+SetLevel
+
+Enum of different levels:
+
+	Debug: 0
+	INFO:  1
+	ERROR: 2
+*/
 func SetLevel(level Level) {
 	defaultLogger.SetLevel(level)
 }
 
+/*
+GetLevel
+*/
 func GetLevel() Level {
 	return defaultLogger.GetLevel()
 }
 
+/*
+Info
+*/
 func Info(format string, v ...any) {
 	defaultLogger.Info(format, v...)
 }
 
+/*
+Debug
+*/
 func Debug(format string, v ...any) {
 	defaultLogger.Debug(format, v...)
 }
 
+/*
+Error
+*/
 func Error(format string, v ...any) {
 	defaultLogger.Error(format, v...)
 }
