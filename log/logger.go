@@ -1,12 +1,7 @@
 package log
 
 import (
-	"fmt"
-	"path/filepath"
-	"runtime"
-	"strings"
 	"sync/atomic"
-	"time"
 )
 
 func (l *Logger) SetLevel(level Level) {
@@ -38,27 +33,6 @@ func (l *Logger) Error(format string, v ...any) {
 	l.w.Write([]byte(l.assembleMsg(ErrorLevel, format, v...)))
 }
 
-func (l *Logger) assembleMsg(logLevel string, format string, v ...any) Message {
-	var msg strings.Builder
-	msg.WriteString(logLevel)
-	msg.WriteString(Whitespace)
-	if l.showDetail {
-		msg.WriteString(fmt.Sprintf("%s", time.Now()))
-		msg.WriteString(Whitespace)
-	}
-	msg.WriteString(getFileLocation())
-	msg.WriteString(fmt.Sprintf(format, v...))
-	msg.WriteString(Whitespace)
-	msg.WriteString(Newline)
-
-	return Message(msg.String())
-}
-
-func getFileLocation() string {
-	_, file, line, ok := runtime.Caller(4)
-	if !ok {
-		file = "unknown file"
-		line = 0
-	}
-	return fmt.Sprintf("%s:%d", filepath.Base(file), line) + " "
+func (l *Logger) AddProcessor(p Processor) {
+	l.processors = append(l.processors, p)
 }

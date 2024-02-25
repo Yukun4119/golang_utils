@@ -75,3 +75,7 @@ Error
 func Error(format string, v ...any) {
 	defaultLogger.Error(format, v...)
 }
+
+func AddProcessor(p Processor) {
+	defaultLogger.AddProcessor(p)
+}

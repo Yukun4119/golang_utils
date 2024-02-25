@@ -7,7 +7,7 @@ import (
 )
 
 type Level int32
-type Message string
+type Processor func(format string, v ...any) (string, []any)
 
 type Logger struct {
 	level        Level
@@ -17,4 +17,5 @@ type Logger struct {
 	mutex        sync.Mutex
 	buf          bytes.Buffer
 	w            io.Writer
+	processors   []Processor
 }

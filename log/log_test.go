@@ -1,9 +1,16 @@
 package log
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestInfo(t *testing.T) {
-	Info("hello info")
+	p := func(format string, v ...any) (string, []any) {
+		return "***:%+v", v
+	}
+	AddProcessor(p)
+	d := 11
+	Info("hello info :%d", d)
 }
 
 func TestDebug(t *testing.T) {
