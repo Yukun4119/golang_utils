@@ -42,12 +42,10 @@ func (l *Logger) assembleMsg(logLevel string, format string, v ...any) Message {
 	var msg strings.Builder
 	msg.WriteString(logLevel)
 	msg.WriteString(Whitespace)
-
 	if l.showDetail {
 		msg.WriteString(fmt.Sprintf("%s", time.Now()))
 		msg.WriteString(Whitespace)
 	}
-
 	msg.WriteString(getFileLocation())
 	msg.WriteString(fmt.Sprintf(format, v...))
 	msg.WriteString(Whitespace)
