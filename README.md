@@ -1,5 +1,5 @@
 # golang_utils
 
 ```shell
-go get github.com/Yukun4119/golang_utils
+go get -u github.com/Yukun4119/golang_utils
 ```
