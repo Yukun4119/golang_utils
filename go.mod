@@ -1,4 +1,4 @@
-module github.com/Yukun4119/golang_utils
+module github.com/ryqdev/golang_utils
 
 go 1.21.0
 
