@@ -1,7 +1,7 @@
 package set
 
 import (
-	"github.com/Yukun4119/golang_utils/log"
+	"github.com/ryqdev/golang_utils/log"
 	"testing"
 )
 
