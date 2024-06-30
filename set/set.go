@@ -5,32 +5,32 @@ import (
 )
 
 type Set interface {
-	Add(v interface{}) bool
-	Remove(v interface{}) bool
-	IsExist(v interface{}) bool
+	Add(v any) bool
+	Remove(v any) bool
+	IsExist(v any) bool
 	IsEmpty() bool
 	Size() int
 	Clear()
 }
 
 type HashSet struct {
-	items map[interface{}]bool
+	items map[any]bool
 }
 
 func New() *HashSet {
 	return &HashSet{
-		items: make(map[interface{}]bool),
+		items: make(map[any]bool),
 	}
 }
 
-func (set *HashSet) Add(item interface{}) {
+func (set *HashSet) Add(item any) {
 	if _, exists := set.items[item]; exists {
 		return
 	}
 	set.items[item] = true
 }
 
-func (set *HashSet) Remove(item interface{}) {
+func (set *HashSet) Remove(item any) {
 	if _, exists := set.items[item]; !exists {
 		return
 	}
@@ -41,15 +41,15 @@ func (set *HashSet) Size() int {
 	return len(set.items)
 }
 
-func (set *HashSet) IsExist(item interface{}) bool {
+func (set *HashSet) IsExist(item any) bool {
 	_, exists := set.items[item]
 	return util.IfThenElse(exists, true, false)
 }
 
-func (set *HashSet) IsEmpty(item interface{}) bool {
+func (set *HashSet) IsEmpty() bool {
 	return util.IfThenElse(set.Size() == 0, true, false)
 }
 
 func (set *HashSet) Clear() {
-	set.items = make(map[interface{}]bool)
+	set.items = make(map[any]bool)
 }
