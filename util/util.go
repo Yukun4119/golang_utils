@@ -1,5 +1,7 @@
 package util
 
+import "github.com/ryqdev/golang_utils/log"
+
 // IfThenElse is the conditional operator in Golang
 // Example:
 // x, y := 1, 2
@@ -9,4 +11,13 @@ func IfThenElse[T any](condition bool, trueValue, falseValue T) T {
 		return trueValue
 	}
 	return falseValue
+}
+
+// DeferRecover
+// usage:
+// defer DeferRecover()
+func DeferRecover() {
+	if err := recover(); err != nil {
+		log.Error("recover panic: %+v", err)
+	}
 }
