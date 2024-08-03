@@ -76,6 +76,9 @@ func Error(format string, v ...any) {
 	defaultLogger.Error(format, v...)
 }
 
+/*
+Add customized processor functions
+*/
 func AddProcessor(p Processor) {
 	defaultLogger.AddProcessor(p)
 }

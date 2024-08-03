@@ -9,13 +9,20 @@ import (
 )
 
 func (l *Logger) assembleMsg(logLevel string, format string, v ...any) string {
+
+	// https://golangnote.com/golang/golang-stringsbuilder-vs-bytesbuffer
+	// Both `strings.Builder` and `bytes.Buffer` are used for efficient in Golang.
+	// Here I choose strings.Builder
+
 	var msg strings.Builder
 	msg.WriteString(logLevel)
 	msg.WriteString(Whitespace)
+
 	if l.showDetail {
-		msg.WriteString(fmt.Sprintf("%s", time.Now()))
+		msg.WriteString(time.Now().String())
 		msg.WriteString(Whitespace)
 	}
+
 	msg.WriteString(getFileLocation())
 	msg.WriteString(l.getMessage(format, v...))
 	msg.WriteString(Whitespace)
