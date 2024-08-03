@@ -28,7 +28,7 @@ func getFileLocation() string {
 	_, file, line, ok := runtime.Caller(4)
 	if !ok {
 		file = "unknown file"
-		line = 0
+		line = -1
 	}
 	return fmt.Sprintf("%s:%d", filepath.Base(file), line) + " "
 }
