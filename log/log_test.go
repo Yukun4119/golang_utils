@@ -5,10 +5,6 @@ import (
 )
 
 func TestInfo(t *testing.T) {
-	p := func(format string, v ...any) (string, []any) {
-		return "***:%+v", v
-	}
-	AddProcessor(p)
 	d := 11
 	Info("hello info :%d", d)
 }
@@ -18,5 +14,9 @@ func TestDebug(t *testing.T) {
 }
 
 func TestError(t *testing.T) {
+	p := func(format string, v ...any) (string, []any) {
+		return "[processer]: %+v", v
+	}
+	AddProcessor(p)
 	Error("hello error")
 }
