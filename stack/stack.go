@@ -1,9 +1,5 @@
 package stack
 
-import (
-	"github.com/ryqdev/golang_utils/util"
-)
-
 type StackType interface {
 	int | float32 | float64 | string
 }
@@ -26,7 +22,7 @@ func New[T StackType](initSize ...int) *GoStack[T] {
 		// TODO: is panic suitable?
 		panic("Invalid argument")
 	}
-	size := util.IfThenElse(len(initSize) == 0, 0, initSize[0])
+	size := util.Ternary(len(initSize) == 0, 0, initSize[0])
 	return &GoStack[T]{
 		items: make([]T, size),
 	}
