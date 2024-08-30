@@ -1,5 +1,7 @@
 package stack
 
+import "github.com/ryqdev/golang_utils/util"
+
 type StackType interface {
 	int | float32 | float64 | string
 }
