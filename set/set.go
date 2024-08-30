@@ -43,11 +43,11 @@ func (set *HashSet) Size() int {
 
 func (set *HashSet) IsExist(item any) bool {
 	_, exists := set.items[item]
-	return util.IfThenElse(exists, true, false)
+	return util.Ternary(exists, true, false)
 }
 
 func (set *HashSet) IsEmpty() bool {
-	return util.IfThenElse(set.Size() == 0, true, false)
+	return util.Ternary(set.Size() == 0, true, false)
 }
 
 func (set *HashSet) Clear() {
