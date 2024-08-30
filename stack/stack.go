@@ -49,3 +49,11 @@ func (s *GoStack) Pop() {
 func (s *GoStack) IsEmpty() bool {
 	return len(s.items) == 0
 }
+
+func (s *GoStack) Clear() {
+	s.items = make([]any, 0)
+}
+
+func (s *GoStack) Size() int {
+	return len(s.items)
+}
