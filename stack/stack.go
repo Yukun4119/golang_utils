@@ -7,7 +7,7 @@ type StackType interface {
 type Stack[T StackType] interface {
 	Top() T
 	Push(v T)
-	Pop(v T)
+	Pop()
 	IsEmpty() bool
 	Size() int
 	Clear()
