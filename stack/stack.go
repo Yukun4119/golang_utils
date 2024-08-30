@@ -4,7 +4,11 @@ import (
 	"github.com/ryqdev/golang_utils/util"
 )
 
-type Stack[T int | float32 | float64 | string] interface {
+type StackType interface {
+	int | float32 | float64 | string
+}
+
+type Stack[T StackType] interface {
 	Top() T
 	Push(v T)
 	Pop(v T)
@@ -13,11 +17,11 @@ type Stack[T int | float32 | float64 | string] interface {
 	Clear()
 }
 
-type GoStack[T int | float32 | float64 | string] struct {
+type GoStack[T StackType] struct {
 	items []T
 }
 
-func New[T int | float32 | float64 | string](initSize ...int) *GoStack[T] {
+func New[T StackType](initSize ...int) *GoStack[T] {
 	if len(initSize) > 1 {
 		// TODO: is panic suitable?
 		panic("Invalid argument")
