@@ -1,7 +1,7 @@
 package stack
 
 type StackType interface {
-	int | float32 | float64 | string
+	int | float32 | float64 | string | byte
 }
 
 type Stack[T StackType] interface {
