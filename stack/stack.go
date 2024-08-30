@@ -4,56 +4,56 @@ import (
 	"github.com/ryqdev/golang_utils/util"
 )
 
-type Stack interface {
-	Top() any
-	Push(v any)
-	Pop(v any)
+type Stack[T int | float32 | float64 | string] interface {
+	Top() T
+	Push(v T)
+	Pop(v T)
 	IsEmpty() bool
 	Size() int
 	Clear()
 }
 
-type GoStack struct {
-	items []any
+type GoStack[T int | float32 | float64 | string] struct {
+	items []T
 }
 
-func New(initSize ...int) *GoStack {
+func New[T int | float32 | float64 | string](initSize ...int) *GoStack[T] {
 	if len(initSize) > 1 {
 		// TODO: is panic suitable?
 		panic("Invalid argument")
 	}
 	size := util.IfThenElse(len(initSize) == 0, 0, initSize[0])
-	return &GoStack{
-		items: make([]any, size),
+	return &GoStack[T]{
+		items: make([]T, size),
 	}
 }
 
-func (s *GoStack) Top() any {
+func (s *GoStack[T]) Top() T {
 	if len(s.items) == 0 {
 		panic("OOPS")
 	}
 	return s.items[len(s.items)-1]
 }
 
-func (s *GoStack) Push(item any) {
+func (s *GoStack[T]) Push(item T) {
 	s.items = append(s.items, item)
 }
 
-func (s *GoStack) Pop() {
+func (s *GoStack[T]) Pop() {
 	if len(s.items) == 0 {
 		panic("OOPS")
 	}
 	s.items = s.items[:len(s.items)-1]
 }
 
-func (s *GoStack) IsEmpty() bool {
+func (s *GoStack[T]) IsEmpty() bool {
 	return len(s.items) == 0
 }
 
-func (s *GoStack) Clear() {
-	s.items = make([]any, 0)
+func (s *GoStack[T]) Clear() {
+	s.items = make([]T, 0)
 }
 
-func (s *GoStack) Size() int {
+func (s *GoStack[T]) Size() int {
 	return len(s.items)
 }
